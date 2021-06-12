@@ -18,9 +18,11 @@ typedef NS_ENUM(NSInteger, PopupMenuDirection) {
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *selectedImage;
+@property (nonatomic, assign) BOOL isSelected;
 
 /** 生成选项对象，标题和图片至少要传一个参数*/
-+ (LFPopupMenuItem *)createWithTitle:(NSString *)title image:(UIImage *)image NS_DEPRECATED_IOS(2_0, 2_0, "该方法已废弃，建议使用+ (LFPopupMenuItem *)createWithTitle:(NSString *)title image:(UIImage *)image action:(void(^)(void))action");
++ (LFPopupMenuItem *)createWithTitle:(NSString *)title image:(UIImage *)image selectedImage:(UIImage*)selectedImage isSelected:(BOOL)isSelected  NS_DEPRECATED_IOS(2_0, 2_0, "该方法已废弃，建议使用+ (LFPopupMenuItem *)createWithTitle:(NSString *)title image:(UIImage *)image action:(void(^)(void))action");
 
 /** 生成选项对象，标题和图片至少要传一个参数*/
 + (LFPopupMenuItem *)createWithTitle:(NSString *)title image:(UIImage *)image action:(void(^)(void))action;

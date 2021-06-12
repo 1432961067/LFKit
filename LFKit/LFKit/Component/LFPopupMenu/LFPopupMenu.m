@@ -17,10 +17,12 @@
 
 @implementation LFPopupMenuItem
 
-+ (LFPopupMenuItem *)createWithTitle:(NSString *)title image:(UIImage *)image {
++ (LFPopupMenuItem *)createWithTitle:(NSString *)title image:(UIImage *)image selectedImage:(UIImage*)selectedImage isSelected:(BOOL)isSelected {
     LFPopupMenuItem *item = [[LFPopupMenuItem alloc] init];
     item.title = title;
+    item.selectedImage = selectedImage;
     item.image = image;
+    item.isSelected = isSelected;
     return item;
 }
 
@@ -110,7 +112,14 @@
         
         CGFloat lbX = imgW > 0 ? (self.leftEdgeMargin + imgW + self.textMargin) : self.leftEdgeMargin;
         UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(lbX, i*self.rowHeight, self.frame.size.width - lbX - self.rightEdgeMargin, self.rowHeight)];
-        lb.textColor = self.textColor;
+        if (item.isSelected) {
+            lb.textColor = [UIColor colorWithRed:(0/255.0f) green:(213/255.0f) blue:(190/255.0f) alpha:(255/255.0f)];
+            if (item.selectedImage) {
+                iv.image = item.selectedImage;
+            }
+        }else{
+            lb.textColor = self.textColor;
+        }
         lb.text = item.title;
         lb.font = self.textFont;
         [self.containerView addSubview:lb];
